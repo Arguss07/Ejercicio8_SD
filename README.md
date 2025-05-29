@@ -30,7 +30,7 @@ Comprender el ciclo completo de **creación, despliegue y consumo** de servicios
 
 ## 📷 Capturas de ejecución
 
-> Se incluyen en la carpeta `/screenshots`.
+> Se incluyen en la carpeta `/ejecución`.
 
 ## 🔧 Ejecución local
 
