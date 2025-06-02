@@ -2,37 +2,19 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-# Simulamos un saldo inicial
-saldo_tarjeta = {
-    "123456789": 1500  # número de tarjeta y su saldo
-}
-
 @app.route('/pagar', methods=['POST'])
 def pagar():
-    datos = request.get_json()
-    numero_tarjeta = str(datos['numero_tarjeta'])
-    monto = datos['monto']
-    nombre = datos['nombre']
-    codigo_CVV = datos['codigo_CVV']
-
-    if numero_tarjeta in saldo_tarjeta and saldo_tarjeta[numero_tarjeta] >= monto:
-        saldo_tarjeta[numero_tarjeta] -= monto
-        return jsonify({"resultado": True, "mensaje": "TRANSACCIÓN EXITOSA"})
-    else:
-        return jsonify({"resultado": False, "mensaje": "FALLÓ LA TRANSACCIÓN"})
+    data = request.json
+    if data["numero_tarjeta"] == 123456789 and data["monto"] <= 1000:
+        return jsonify({"success": True})
+    return jsonify({"success": False})
 
 @app.route('/comprar', methods=['POST'])
 def comprar():
-    datos = request.get_json()
-    id_producto = datos['id_producto']
-    precio = datos['precio']
-    numero_productos = datos['numero_productos']
-    total = datos['total']
-
-    if precio * numero_productos == total:
-        return jsonify({"resultado": True, "mensaje": "COMPRA EXITOSA"})
-    else:
-        return jsonify({"resultado": False, "mensaje": "FALLÓ LA COMPRA"})
+    data = request.json
+    if data["total"] == data["precio"] * data["numero_productos"]:
+        return jsonify({"success": True})
+    return jsonify({"success": False})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000)

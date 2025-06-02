@@ -1,9 +1,7 @@
 import requests
 
-# Endpoint base del servidor
-URL = "http://127.0.0.1:5000"
+URL = "http://10.87.6.166:5000"  # Reemplaza con la IP del servidor
 
-# Prueba 1: Pagar
 pago = {
     "numero_tarjeta": 123456789,
     "monto": 1000,
@@ -11,10 +9,6 @@ pago = {
     "codigo_CVV": 456
 }
 
-resp_pago = requests.post(f"{URL}/pagar", json=pago)
-print("PAGAR:", resp_pago.json()["mensaje"])
-
-# Prueba 2: Comprar
 compra = {
     "id_producto": 101,
     "precio": 250,
@@ -22,5 +16,8 @@ compra = {
     "total": 1000
 }
 
+resp_pago = requests.post(f"{URL}/pagar", json=pago)
+print("PAGAR:", "TRANSACCIÓN EXITOSA" if resp_pago.json()["success"] else "FALLÓ LA TRANSACCIÓN")
+
 resp_compra = requests.post(f"{URL}/comprar", json=compra)
-print("COMPRAR:", resp_compra.json()["mensaje"])
+print("COMPRAR:", "COMPRA EXITOSA" if resp_compra.json()["success"] else "FALLÓ LA COMPRA")
