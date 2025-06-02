@@ -1,6 +1,6 @@
 import requests
 
-URL = "http://10.87.6.166:5000"  # Reemplaza con la IP del servidor
+URL = "http://192.168.9.131:5000"  
 
 pago = {
     "numero_tarjeta": 123456789,
