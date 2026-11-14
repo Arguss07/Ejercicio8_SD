@@ -21,3 +21,6 @@ print("PAGAR:", "TRANSACCIÓN EXITOSA" if resp_pago.json()["success"] else "FALL
 
 resp_compra = requests.post(f"{URL}/comprar", json=compra)
 print("COMPRAR:", "COMPRA EXITOSA" if resp_compra.json()["success"] else "FALLÓ LA COMPRA")
+
+
+#dnfchdebc
